@@ -3,7 +3,6 @@ package site.gutschi.quarkustest.observe
 import io.quarkus.test.junit.QuarkusTest
 import io.restassured.RestAssured.given
 import org.hamcrest.CoreMatchers.`is`
-import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.Test
 
 @QuarkusTest
@@ -28,7 +27,6 @@ class InfoTest {
     }
 
     @Test
-    @Disabled("This test is currently failing. I have to figure out how to register the TestInfoContributor in the InfoRecorder")
     fun customInfo() {
         given()
             .auth().preemptive().basic("admin", "admin")
