@@ -13,7 +13,7 @@ class RestClientResourceTest {
             .`when`().get("/rest-client")
             .then()
             .statusCode(200)
-            .body(startsWith("[{\"id\":\"1\","))
+            .body(startsWith("[{\"userId\":1,\"id\":1"))
     }
 
 }

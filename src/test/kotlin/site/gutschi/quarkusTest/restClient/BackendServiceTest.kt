@@ -20,11 +20,11 @@ class BackendServiceTest {
 
     @Test
     fun backendData() {
-        `when`(backendPort.start()).thenReturn(arrayOf(BackendPort.BackendResult("1", "Test")))
+        `when`(backendPort.start()).thenReturn(arrayOf(BackendPort.BackendResult(1, 1, "Test")))
         val data = backendService.backendData()
         assertNotNull(data)
         assertTrue(data.isNotEmpty())
-        assertEquals("1", data[0].id)
-        assertEquals("Test", data[0].name)
+        assertEquals(1, data[0].id)
+        assertEquals("Test", data[0].title)
     }
 }
