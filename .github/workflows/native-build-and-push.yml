@@ -24,6 +24,11 @@ jobs:
         env:
           SONAR_HOST_URL: ${{ vars.SONAR_HOST_URL }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        with:
+          args: >
+            -Dsonar.organization=lizzythelizard
+            -Dsonar.projectKey=lizzyTheLizard_quarkus-test
+            -Dsonar.verbose=true
       - name: Build and test native application
         run: ./mvnw package -Pnative -Dquarkus.native.container-build=true -B
       - name: Set up Docker Buildx
