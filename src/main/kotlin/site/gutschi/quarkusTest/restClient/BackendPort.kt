@@ -5,7 +5,7 @@ import jakarta.ws.rs.Path
 import org.eclipse.microprofile.rest.client.inject.RegisterRestClient
 
 @RegisterRestClient(baseUri = "http://api.restful-api.dev", configKey = "backend-api")
-interface BackendPort {
+fun interface BackendPort {
     @GET
     @Path("/objects")
     fun start(): Array<BackendResult>

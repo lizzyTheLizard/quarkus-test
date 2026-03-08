@@ -21,7 +21,7 @@ class BasicIdentityProvider : IdentityProvider<UsernamePasswordAuthenticationReq
     ): Uni<SecurityIdentity> {
         if (p0 === null)
             return Uni.createFrom().failure(IllegalArgumentException("Authentication request is null"))
-        if (!p0.username.equals("admin") || !p0.password.password.concatToString().equals("admin"))
+        if (p0.username != "admin" || p0.password.password.concatToString() != "admin")
             return Uni.createFrom().failure(IllegalArgumentException("Invalid credentials"))
         val principal = QuarkusPrincipal(p0.username)
         val identity = QuarkusSecurityIdentity.builder().setPrincipal(principal).addRole("admin").build()
