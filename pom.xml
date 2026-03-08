@@ -18,6 +18,8 @@
         <skipITs>true</skipITs>
         <surefire-plugin.version>3.5.4</surefire-plugin.version>
         <sonar.version>5.5.0.6356</sonar.version>
+        <sonar.organization>lizzythelizard</sonar.organization>
+        <sonar.projectKey>lizzyTheLizard_quarkus-test</sonar.projectKey>
     </properties>
 
     <dependencyManagement>
