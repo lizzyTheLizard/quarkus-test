@@ -1,7 +1,6 @@
 package site.gutschi.quarkusTest.observe
 
 import io.quarkus.test.junit.QuarkusTest
-import io.quarkus.test.keycloak.client.KeycloakTestClient
 import io.restassured.RestAssured.given
 import org.hamcrest.CoreMatchers.`is`
 import org.junit.jupiter.api.Disabled
