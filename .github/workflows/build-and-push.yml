@@ -38,7 +38,7 @@ jobs:
         run: ./mvnw package -Pnative -Dquarkus.native.container-build=true -B
   sonar:
     runs-on: ubuntu-latest
-    name: Build (Native)
+    name: SonarQube Analysis
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -48,13 +48,35 @@ jobs:
           java-version: '25'
           distribution: 'temurin'
           cache: maven
+      - name: Verify Maven wrapper
+        run: chmod +x ./mvnw
       - name: SonarQube Scan
         run: ./mvnw sonar:sonar -B
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
   docker:
     runs-on: ubuntu-latest
-    name: Build (Native)
+    name: Build Docker Image
+    needs: [buildNative]
+    if : github.ref == 'refs/heads/main'
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+      - name: Build native image
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          file: ./src/main/docker/Dockerfile.native
+          push: false
+          tags: ${{ github.sha }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+  restart:
+    runs-on: ubuntu-latest
+    name: Push and Restart Application
+    needs: [docker, sonar, buildJVM]
     if : github.ref == 'refs/heads/main'
     steps:
       - name: Checkout code
