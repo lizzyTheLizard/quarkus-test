@@ -2,8 +2,8 @@ package site.gutschi.quarkusTest.observe
 
 import io.quarkus.info.runtime.spi.InfoContributor
 
-//TODO: THis is not working. I have to figure out how to register this class in InfoRecorder
-class TestInfoContributor : InfoContributor {
+//TODO: This is not working. I have to figure out how to register this class in InfoRecorder
+class CustomInfoContributor : InfoContributor {
     override fun name(): String {
         return "test"
     }
